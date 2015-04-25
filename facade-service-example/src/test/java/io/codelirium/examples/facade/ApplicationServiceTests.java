@@ -29,7 +29,7 @@ import static org.hamcrest.Matchers.empty;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
-public class ApplicationTests {
+public class ApplicationServiceTests {
 
 	@Rule
 	public ExpectedException expectedException = ExpectedException.none();
@@ -37,15 +37,15 @@ public class ApplicationTests {
 	private FacadeService<List<String>> greetingsFacadeService;
 	private GreetingsService morningGreetingsService;
 	private GreetingsService eveningGreetingsService;
-	private GreetingsService nightGreetingService;
+	private GreetingsService nightGreetingsService;
 
 	@Before
 	public void setUp() {
 		morningGreetingsService = new MorningGreetingsServiceImpl();
 		eveningGreetingsService = new EveningGreetingsServiceImpl();
-		nightGreetingService = new NightGreetingsServiceImpl();
+		nightGreetingsService = new NightGreetingsServiceImpl();
 
-		greetingsFacadeService = new GreetingsFacadeServiceImpl(morningGreetingsService, eveningGreetingsService, nightGreetingService);
+		greetingsFacadeService = new GreetingsFacadeServiceImpl(morningGreetingsService, eveningGreetingsService, nightGreetingsService);
 	}
 
 	@Test
@@ -69,7 +69,7 @@ public class ApplicationTests {
 	
 		greetingsFacadeService.delegate(1, notAString());
 	}
-	
+
 	@Test
 	public void testThatFacadeServiceDelegationResultTypeIsAList() {
 		assertThat(greetingsFacadeService.delegate(1, getGreetingName()), is(instanceOf(List.class)));
@@ -79,6 +79,7 @@ public class ApplicationTests {
 	public void testThatFacadeServiceDelegationResultIsNotEmpty() {
 		assertThat(greetingsFacadeService.delegate(1, getGreetingName()), is(not(empty())));
 	}
+
 	@Test
 	public void testThatFacadeServiceDelegationResultContainsThreeGreetings() {
 		assertThat(greetingsFacadeService.delegate(1, getGreetingName()), hasSize(3));
@@ -88,7 +89,7 @@ public class ApplicationTests {
 	public void testThatFacadeServiceDelegationResultContainsTheExpectedGreetings() {
 		assertThat(greetingsFacadeService.delegate(1, getGreetingName()), hasItem(morningGreetingsService.getGreetings(getGreetingName())));
 		assertThat(greetingsFacadeService.delegate(1, getGreetingName()), hasItem(eveningGreetingsService.getGreetings(getGreetingName())));
-		assertThat(greetingsFacadeService.delegate(1, getGreetingName()), hasItem(nightGreetingService.getGreetings(getGreetingName())));
+		assertThat(greetingsFacadeService.delegate(1, getGreetingName()), hasItem(nightGreetingsService.getGreetings(getGreetingName())));
 	}
 
 	private String getGreetingName() {
