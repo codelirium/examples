@@ -29,10 +29,10 @@ public class ReminderAlertConfiguration {
 	@Bean(name = REMINDER_ALERT_TRIGGER_BEAN_NAME)
 	public Trigger reminderAlertTrigger() {
 		return TriggerBuilder.newTrigger()
-									.forJob(ReminderAlertJob.class.getSimpleName())
-									.withSchedule(SimpleScheduleBuilder.simpleSchedule()
-													.withIntervalInSeconds(5)
-													.repeatForever())
-									.build();
+				.forJob(ReminderAlertJob.class.getSimpleName())
+				.withSchedule(SimpleScheduleBuilder.simpleSchedule()
+								.withIntervalInSeconds(5)
+								.repeatForever())
+				.build();
 	}
 }
