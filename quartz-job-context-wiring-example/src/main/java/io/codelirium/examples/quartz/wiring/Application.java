@@ -7,7 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Application implements CommandLineRunner{
+public class Application implements CommandLineRunner {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
 
