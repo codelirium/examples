@@ -26,7 +26,7 @@ public class FileForwardingServiceImpl implements FileForwardingService, Restful
 
 
 	@Inject
-	public FileForwardingServiceImpl(RestTemplate restClient) {
+	public FileForwardingServiceImpl(final RestTemplate restClient) {
 		this.restClient = restClient;
 	}
 
