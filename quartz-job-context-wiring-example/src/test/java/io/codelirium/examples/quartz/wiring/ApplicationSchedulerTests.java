@@ -33,11 +33,17 @@ public class ApplicationSchedulerTests {
 	private JobDetail reminderAlertJobDetail = null;
 	private Trigger reminderAlertTrigger = null;
 
+	private boolean init = false;
+
 	@Before
 	public void setUp() throws Exception{
-		schedulerManager = getSchedulerManager();
-		reminderAlertJobDetail = getReminderAlertJobDetail();
-		reminderAlertTrigger = getReminderAlertTrigger();
+		if (!init) {
+			schedulerManager = getSchedulerManager();
+			reminderAlertJobDetail = getReminderAlertJobDetail();
+			reminderAlertTrigger = getReminderAlertTrigger();
+
+			init = true;
+		}
 	}
 
 	@Test
