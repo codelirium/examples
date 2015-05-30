@@ -1,4 +1,4 @@
-package io.codelirium;
+package io.codelirium.examples.pingpong;
 
 import io.codelirium.examples.pingpong.Application;
 import io.codelirium.examples.pingpong.lockfree.LockFreePingPong;
