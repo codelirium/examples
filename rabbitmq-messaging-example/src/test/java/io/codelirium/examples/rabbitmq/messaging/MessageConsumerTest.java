@@ -4,6 +4,7 @@ import io.codelirium.examples.rabbitmq.messaging.consumer.InspectableMessageCons
 import io.codelirium.examples.rabbitmq.messaging.util.MessageUtils;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -40,8 +41,11 @@ public class MessageConsumerTest {
 
 		messages.forEach(messageConsumer::handleMessage);
 
-		assertThat(messages, hasSize(MSG_TOTAL_COUNT));
-		assertThat(Lists.newArrayList(MessageUtils.extractMessageIds(messages)), equalTo(Lists.newArrayList(messageConsumer.getDeduplicatedReceiptOrderCollection())));
+		List<String> submittedMessageIds = Lists.newArrayList(MessageUtils.extractMessageIds(messages));
+		List<String> consumedMessageIds = Lists.newArrayList(messageConsumer.getDeduplicatedReceiptOrderCollection());
+
+		assertThat(consumedMessageIds, hasSize(MSG_TOTAL_COUNT));
+		assertThat(submittedMessageIds, equalTo(consumedMessageIds));
 	}
 
 }
