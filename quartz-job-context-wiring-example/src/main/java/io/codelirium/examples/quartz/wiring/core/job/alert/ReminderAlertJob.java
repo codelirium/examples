@@ -6,7 +6,7 @@ import org.quartz.JobExecutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ReminderAlertJob implements Job{
+public class ReminderAlertJob implements Job {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReminderAlertJob.class);
 

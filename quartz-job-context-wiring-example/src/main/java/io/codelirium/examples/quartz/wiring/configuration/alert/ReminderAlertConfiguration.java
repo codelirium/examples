@@ -7,7 +7,6 @@ import org.quartz.JobDetail;
 import org.quartz.SimpleScheduleBuilder;
 import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
-import org.quartz.spi.JobFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,7 +16,7 @@ public class ReminderAlertConfiguration {
 	public static final String REMINDER_ALERT_JOB_DETAIL_BEAN_NAME = "remiderAlertJobDetail";
 
 	@Bean(name = REMINDER_ALERT_JOB_DETAIL_BEAN_NAME)
-	public JobDetail remiderAlertJobDetail(final JobFactory jobFactory) {
+	public JobDetail remiderAlertJobDetail() {
 		return JobBuilder.newJob(ReminderAlertJob.class)
 						.withIdentity(ReminderAlertJob.class.getSimpleName())
 						.build();
